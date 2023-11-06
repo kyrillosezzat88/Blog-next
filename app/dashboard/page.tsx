@@ -2,7 +2,7 @@
 import { useSession, signIn, signOut } from "next-auth/react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import useSWR from "swr";
 
 type formDataTytpes = {
@@ -27,7 +27,10 @@ const Dashboard = () => {
   });
   const [edit, setEdit] = useState<Boolean>(false);
   //fetch user data
-  const fetcher = (...args: any[]) => fetch(...args).then((res) => res.json());
+  const fetcher = async (...args: [RequestInfo, RequestInit?]) => {
+    const res = await fetch(...args);
+    return res.json();
+  };
 
   const { data, mutate, error, isLoading } = useSWR(
     `/api/posts?username=${session?.data?.user?.name}`,
@@ -44,7 +47,9 @@ const Dashboard = () => {
 
   if (session.status === "authenticated") {
     // handle change
-    const handlePostData = (e: FormEvent) => {
+    const handlePostData = (
+      e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    ) => {
       setFormData({ ...formData, [e.target.name]: e.target.value });
     };
     // add new post
@@ -66,7 +71,13 @@ const Dashboard = () => {
         console.log(res.ok);
         if (res.ok) {
           mutate();
-          e.target.reset();
+          setFormData({
+            username: "",
+            title: "",
+            desc: "",
+            img: "",
+            content: "",
+          });
         }
       } catch (error) {
         console.log(error);
@@ -179,8 +190,8 @@ const Dashboard = () => {
                 placeholder="Content"
                 name="content"
                 className="p-3 rounded-sm outline-none bg-transparent border border-gray-50"
-                cols="30"
-                rows="10"
+                cols={30}
+                rows={10}
                 defaultValue={formData.content}
                 onChange={handlePostData}
               ></textarea>
