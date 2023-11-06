@@ -100,7 +100,6 @@ const Dashboard = () => {
     //edit Post
     const editPost = async (id: string) => {
       const selectPost = data.find((post: any) => post._id === id);
-      console.log({ selectPost });
       setEdit(true);
       setFormData(selectPost);
     };
