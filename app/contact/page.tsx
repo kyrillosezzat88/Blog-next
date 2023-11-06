@@ -12,7 +12,7 @@ const Contact = () => {
   return (
     <section>
       <h1 className="font-bold text-4xl md:text-5xl text-center capitalize">
-        Let's Keep in Touch
+        Lets Keep in Touch
       </h1>
       <div className="mt-20 flex items-center justify-between flex-wrap md:flex-nowrap">
         <div className="w-full md:w-1/2">
@@ -41,8 +41,8 @@ const Contact = () => {
             <textarea
               name="message"
               id="message"
-              cols="30"
-              rows="10"
+              cols={30}
+              rows={10}
               placeholder="your message"
               className=" border p-3 outline-none border-gray-400 mb-4 bg-transparent"
             ></textarea>
