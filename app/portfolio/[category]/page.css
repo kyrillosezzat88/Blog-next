@@ -1,0 +1,16 @@
+.image-container{
+    flex:1;
+    height: 500px;
+    position: relative;
+}
+.image-container img{
+    object-fit: cover;
+}
+.item{
+    gap: 50px;
+    margin-top: 50px;
+    margin-bottom: 100px;
+  }
+.item:nth-child(2n+1){
+    flex-direction: row-reverse;
+  }

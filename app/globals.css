@@ -16,12 +16,31 @@
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+body{
+  background-color: #111;
+  color: #bbb;
+  transition: all .5 ease-in-out
+}
+
+.btn{
+  @apply px-6 py-2 outline-none rounded-full border-none;
+}
+
+.btn-primary{
+  @apply bg-[#53c28b] text-white
+}
+.theme{
+  transition: 1s all ease;
+}
+
+.darkTheme{
+  background-color: #111;
+  color: #bbb;
+  transition: all .5 ease-in-out;
+
+}
+.lightTheme{
+  background-color:white ;
+  color: #111;
+  transition: all .5 ease-in-out;
 }
